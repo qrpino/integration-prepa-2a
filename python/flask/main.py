@@ -10,4 +10,4 @@ def index():
         pass;
     elif(request.method == 'GET'):
         pass;
-    return render_template('index.html');
+    return render_template('index.html', data = data);
