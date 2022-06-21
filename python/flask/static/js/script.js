@@ -1,7 +1,14 @@
 const modeSelect = $("#mode");
 const pointModeSelect = $("#point-mode");
 modeSelect.on("change", function(){
-
+    if(modeSelect.val() === 0)
+    {
+        alert("hello")
+    }
+    else
+    {
+        alert("")
+    }
 })
 
 const pointsDiv = $("#points");
