@@ -1,18 +1,35 @@
 const modeSelect = $("#mode");
 const pointModeSelect = $("#point-mode");
-modeSelect.on("change", function(){
-    if(modeSelect.val() === 0)
+
+function hideOnSelectMode()
+{
+    if(modeSelect.val() == 0)
     {
-        alert("hello")
+        $('#points').hide();
+        $('#point-mode').hide();
+        $('#append-point').hide();
+        $('#remove-point').hide();
+        $('#motors').show();
     }
     else
     {
-        alert("")
+        $('#motors').hide();
+        $('#points').show();
+        $('#point-mode').show();
+        $('#append-point').show();
+        $('#remove-point').show();
     }
+}
+
+hideOnSelectMode();
+
+modeSelect.on("change", function(){
+    hideOnSelectMode();
 })
 
 const pointsDiv = $("#points");
 let pointsCount = pointsDiv.children().length
+
 $("#append-point").on("click", function () { 
     pointsCount += 1;
     /**
@@ -25,6 +42,7 @@ $("#append-point").on("click", function () {
     pointDiv.append(yInput);
     pointsDiv.append(pointDiv);
 })
+
 $("#remove-point").on("click", function () {
     if(pointsCount > 0)
     {
