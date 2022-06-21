@@ -28,7 +28,8 @@ modeSelect.on("change", function(){
 })
 
 const pointsDiv = $("#points");
-let pointsCount = pointsDiv.children().length
+let pointsCount = pointsDiv.children().length;
+console.log("Points :" + pointsCount);
 
 $("#append-point").on("click", function () { 
     pointsCount += 1;
@@ -36,11 +37,13 @@ $("#append-point").on("click", function () {
      * @type {HTMLDivElement}
      */
     pointDiv = $(`<div id="point-${pointsCount}"></div>`);
-    xInput = $(`<input id="point-${pointsCount}-x" type="number" placeholder="x value...">`);
-    yInput = $(`<input id="point-${pointsCount}-y" type="number" placeholder="y value...">`);
+    xInput = $(`<input name="point-${pointsCount}-x" type="number" placeholder="x value...">`);
+    yInput = $(`<input name="point-${pointsCount}-y" type="number" placeholder="y value...">`);
     pointDiv.append(xInput);
     pointDiv.append(yInput);
     pointsDiv.append(pointDiv);
+    $('input[name="points-count"]:hidden').val(pointsCount);
+    console.log($('input[name="points-count"]:hidden').val());
 })
 
 $("#remove-point").on("click", function () {
@@ -48,5 +51,7 @@ $("#remove-point").on("click", function () {
     {
         $(`#point-${pointsCount}`).remove();
         pointsCount -= 1;
+        $('input[name="points-count"]:hidden').val(pointsCount);
+        console.log($('input[name="points-count"]:hidden').val());
     }
   })

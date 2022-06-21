@@ -1,3 +1,4 @@
+.DS_Store
 python/flask/__pycache__
 python/flask/.venv
 python/flask/*.sh

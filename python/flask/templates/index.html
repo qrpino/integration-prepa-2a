@@ -2,8 +2,8 @@
 {% block title %}Team 3{% endblock %}
 {% block content %}
     <div>
-        <form action="http://localhost:5000" method="post">
-            <select name="" id="mode">
+        <form action="http://localhost:5000" method="POST">
+            <select name="mode" id="mode">
                 <option value="0">Move motors</option>
                 <option value="1">Set points</option>
             </select>
@@ -21,7 +21,9 @@
             </div>
             <input type="button" id="append-point" value="Append Point">
             <input type="button" id="remove-point" value="Remove Point">
+            <input type="number" name="points-count" hidden value=0>
             <input type="submit" value="Update motor">
         </form>
     </div>
+    <button id="test-request">Test Request</button>
 {% endblock %}
