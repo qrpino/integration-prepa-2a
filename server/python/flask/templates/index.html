@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Team 3{% endblock %}
+{% block content %}
+<div id="motors">
+    <label for="motor-1">Motor 1</label>
+    <input type="number" id="motor-1" value="0">
+    <label for="motor-2">Motor 2</label>
+    <input type="number" id="motor-2" value="0">
+    <label for="motor-3">Motor 3</label>
+    <input type="number" id="motor-3" value="0">
+    <label for="motor-4">Motor 4</label>
+    <input type="number" id="motor-4" value="0">
+    <label for="motor-5">Motor 5</label>
+    <input type="number" id="motor-5" value="0">
+    <label for="motor-6">Motor 6</label>
+    <input type="number" id="motor-6" value="0">
+    <input type="button" value="Send values" id="submit-motors">
+</div>
+<div id="single-point">
+    <div>
+        <input type="number" id="single-point-x" placeholder="X value">
+        <input type="number" id="single-point-y" placeholder="Y value">
+        <input type="number" id="single-point-z" placeholder="Z value">
+    </div>
+    <input type="button" value="Send values" id="submit-single-point">
+</div>
+<div id="arc-circle">
+    <div id="arc-point-1">
+        <input type="number" id="arc-circle-point-1-x" placeholder="X value point 1">
+        <input type="number" id="arc-circle-point-1-y" placeholder="Y value point 1">
+        <input type="number" id="arc-circle-point-1-z" placeholder="Z value point 1">
+    </div>
+    <div id="arc-point-2">
+        <input type="number" id="arc-circle-point-2-x" placeholder="X value point 2">
+        <input type="number" id="arc-circle-point-2-y" placeholder="Y value point 2">
+        <input type="number" id="arc-circle-point-2-z" placeholder="Z value point 2">
+    </div>
+    <div id="arc-point-3">
+        <input type="number" id="arc-circle-point-3-x" placeholder="X value point 3">
+        <input type="number" id="arc-circle-point-3-y" placeholder="Y value point 3">
+        <input type="number" id="arc-circle-point-3-z" placeholder="Z value point 3">
+    </div>
+    <input type="button" value="Send values" id="submit-arc-circle">
+</div>
+{% endblock %}

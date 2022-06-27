@@ -1,0 +1,6 @@
+- Serveur
+  - FLASK
+    - Si je reçois un POST, update JSON control
+- Client
+  - Python
+    - Je serial

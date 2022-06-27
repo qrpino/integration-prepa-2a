@@ -1,4 +1,4 @@
 .DS_Store
 python/flask/__pycache__
-python/flask/.venv
-python/flask/*.sh
+server/python/flask/.venv
+server/python/flask/*.sh
