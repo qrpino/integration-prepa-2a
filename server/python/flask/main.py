@@ -5,6 +5,7 @@ import paho.mqtt.publish as publish
 
 app = Flask(__name__);
 CORS(app, resources={r"/*": {"origins":"*"}});
+print("test");
 
 @app.route('/')
 def index():
