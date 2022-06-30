@@ -22,6 +22,7 @@ def on_message(client, userdata, message):
     try:
         msg = json.loads(message.payload.decode('ascii'));
         writeToSerialPort(message.payload.decode('ascii'));
+        print(message.payload.decode('ascii'));
     except ValueError as error:
         print("Bad format from arduino: " + message.payload.decode('ascii'));
 
@@ -52,6 +53,5 @@ def testMessages():
         jsonized = json.loads(messageToSend);
         mqtt_client.publish(topic="values", payload=json.dumps(jsonized));
         
-#threading.Thread(target=listenSerial).start();
+threading.Thread(target=listenSerial).start();
 threading.Thread(target=mqtt_client.loop_forever).start();
-threading.Thread(target=testMessages).start();

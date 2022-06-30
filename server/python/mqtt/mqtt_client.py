@@ -3,7 +3,7 @@ import json
 
 def on_message(client, userdata, message):
     try:
-        json.loads(message.decode('utf-8'));
+        json.loads(message.payload.decode('utf-8'));
         with open("values.json", "w") as file:
             file.write(message.payload.decode('utf-8'));
     except ValueError as error:

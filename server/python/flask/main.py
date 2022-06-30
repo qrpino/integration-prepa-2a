@@ -2,7 +2,7 @@ import json
 from flask import Flask, make_response, render_template, request
 from flask_cors import CORS, cross_origin
 import paho.mqtt.publish as publish
-
+import os.path
 # Let's create the Flask instance.
 app = Flask(__name__);
 # Let's define the CORS policy for http requests.
@@ -21,9 +21,9 @@ def api():
             data = "";
             # Get the data from the file writen by the MQTT client running
             # on the server.
-            with open("../mqtt/values.json", "r") as file:
+            with open(os.path.dirname(__file__) + "/../mqtt/values.json", "r") as file:
                 # Store it into the data variable, which stays a String.
-                data = json.dumps(file);
+                data = json.load(file);
                 response = app.make_response(data);
                 # Set HTTP Headers to allow the server to process
                 # XMLHttpRequests by all adresses.
@@ -31,7 +31,7 @@ def api():
                 return response;
             # If there was an error, send at least a response...
         except IOError as error:
-                response = app.make_response("Data couldn't be loaded");
+                response = app.make_response("Data couldn't be loaded" + str(error));
                 response.headers["Access-control-Allow-Origin"] = "*";
                 return response;
     elif(request.method == 'POST'):
@@ -40,9 +40,10 @@ def api():
         # Send an MQTT message to our MQTT broker running on the same local network.
         # The message is a stringified JSON.
         publish.single(topic="control", payload = json.dumps(data) ,hostname="172.17.0.4", port=1883, client_id="Serveur", keepalive=60, auth={'username': 'team3', 'password': 'd*j-K5:BJK9;'});
+        print(data);
         return("Page intended to be used with POST requests.")
     return("Page not intended to be used alone.")
 
 if __name__ == '__main__':
     # Allow all adresses to access the HTTP server on the port 80, on debug mode.
-        app.run(host="127.0.0.1", port=5000, debug=True)
+        app.run(host="0.0.0.0", port=80, debug=True)

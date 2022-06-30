@@ -1,4 +1,3 @@
-// Prepare our tool to handle the requests.
 var api = {
     url : "https://stern3.imerir.org/api",
     xhr : null,
@@ -19,7 +18,7 @@ var api = {
                     let currentMotorValues = JSON.parse(xhr.responseText);
                     for (let index = 1; index < 6 + 1; index++) {
                         let currentMotorValueInput = $(`#motor-${index}-current-value`);
-                        currentMotorValueInput.val(currentMotorValues["motors"][index]);}
+                        currentMotorValueInput.val(currentMotorValues["motors"][index - 1]);}
                 } catch (error) {
                     console.log("Server couldn't prepare response properly.");
                 }
@@ -109,7 +108,7 @@ $('#launch-sequence').on('click', function(){
     points = [];
     for (let index = 1; index < registeredPointsCount+1; index++) {
         let point = JSON.parse($(`#point-${index}`).attr('data'));
-        points.append(point);
+        points.push(point);
     }
     api.post({"points-sequence": points})
 });
