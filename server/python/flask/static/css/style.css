@@ -1,3 +1,37 @@
 *{
     
 }
+
+.btn-arrow{
+    all: unset;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+
+input[type="number"]{
+    width: 3em;
+    appearance: textfield;
+    margin: 0;
+    text-align: center;
+}
+
+#robot{
+    height: 40vh;
+    text-align: center;
+}
+
+#motors {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
+.motor-section {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hidden {
+    visibility: hidden;
+}

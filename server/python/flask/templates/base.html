@@ -1,3 +1,4 @@
+<!-- This is a template file which will be used by other html files. -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -9,26 +10,16 @@
 </head>
 <body>
     <header>
-        <!-- TO DO -->
     </header>
     <main>
-    <!-- flash tutorial : https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/ -->
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                <ul>
-                    {% for message in messages %}
-                        <li>Flash message : {{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
-        {% block content %} <!-- Ici, le contenu qui sera intégré par celui qui utilise la fonction extends -->
+        {% block content %}
         {% endblock %}
     </main>
     <footer>
-        <!-- TO DO -->
     </footer>
+    <!-- Load the jquery library before loading any other scripts that requires it. -->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- url_for() is a function used to avoid absolute paths -->
     <script src={{url_for('static', filename="js/script.js")}}></script>
 </body>
 </html>

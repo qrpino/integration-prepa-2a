@@ -1,28 +1,72 @@
+<!-- Load the base template file. -->
 {% extends "base.html" %}
+<!-- Set the content of the page's title. -->
 {% block title %}Team 3{% endblock %}
+<!-- Set the content of the main HTML attribute. -->
+<!-- For each section (motors values, etc.), create dedicated div with an input
+    field per item, and a button used to send a POST XMLHttpRequest.
+-->
 {% block content %}
-<div id="motors">
-    <label for="motor-1">Motor 1</label>
-    <input type="number" id="motor-1" value="0">
-    <label for="motor-2">Motor 2</label>
-    <input type="number" id="motor-2" value="0">
-    <label for="motor-3">Motor 3</label>
-    <input type="number" id="motor-3" value="0">
-    <label for="motor-4">Motor 4</label>
-    <input type="number" id="motor-4" value="0">
-    <label for="motor-5">Motor 5</label>
-    <input type="number" id="motor-5" value="0">
-    <label for="motor-6">Motor 6</label>
-    <input type="number" id="motor-6" value="0">
-    <input type="button" value="Send values" id="submit-motors">
+<div id="robot">
+    <img src="{{ url_for('static', filename='/img/robot.png') }}" height="100%" alt="Stern - Team 3">
 </div>
-<div id="single-point">
-    <div>
-        <input type="number" id="single-point-x" placeholder="X value">
-        <input type="number" id="single-point-y" placeholder="Y value">
-        <input type="number" id="single-point-z" placeholder="Z value">
+<div id="motors">
+    <div id="motors-values-selection">
+        <div class="motor-section">
+            <label for="motor-1">Motor 1</label>
+            <input type="button" id="motor-1-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-1" value="0" class="motor-input">
+            <input type="button" id="motor-1-right" value="➡️" class="btn-arrow">
+        </div>
+        <div class="motor-section">
+            <label for="motor-2">Motor 2</label>
+            <input type="button" id="motor-2-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-2" value="0" class="motor-input">
+            <input type="button" id="motor-2-right" value="➡️" class="btn-arrow">
+        </div>
+        <div class="motor-section">
+            <label for="motor-3">Motor 3</label>
+
+            <input type="button" id="motor-3-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-3" value="0" class="motor-input">
+            <input type="button" id="motor-3-right" value="➡️" class="btn-arrow">
+        </div>
+        <div class="motor-section">
+            <label for="motor-4">Motor 4</label>
+            
+            <input type="button" id="motor-4-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-4" value="0" class="motor-input">
+            <input type="button" id="motor-4-right" value="➡️" class="btn-arrow">
+        </div>
+        <div class="motor-section">
+            <label for="motor-5">Motor 5</label>
+
+            <input type="button" id="motor-5-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-5" value="0" class="motor-input">
+            <input type="button" id="motor-5-right" value="➡️" class="btn-arrow">
+        </div>
+        <div class="motor-section">
+            <label for="motor-6">Motor 6</label>
+        
+            <input type="button" id="motor-6-left" value="⬅️" class="btn-arrow">
+            <input type="number" id="motor-6" value="0" class="motor-input">
+            <input type="button" id="motor-6-right" value="➡️" class="btn-arrow">
+        </div>
+        <input type="button" value="Register point" id="register-point" title="Limit : 10">
     </div>
-    <input type="button" value="Send values" id="submit-single-point">
+    <div id="motor-current-values">
+        <input readonly type="text" id="motor-1-current-value" value="Undefined">
+        <input readonly type="text" id="motor-2-current-value" value="Undefined">
+        <input readonly type="text" id="motor-3-current-value" value="Undefined">
+        <input readonly type="text" id="motor-4-current-value" value="Undefined">
+        <input readonly type="text" id="motor-5-current-value" value="Undefined">
+        <input readonly type="text" id="motor-6-current-value" value="Undefined">
+    </div>
+</div>
+<div id="points">
+    <input type="button" id="launch-sequence" class="hidden" value="Launch points sequence">
+    <div id="registered-points">
+    </div>
 </div>
 <div id="arc-circle">
     <div id="arc-point-1">

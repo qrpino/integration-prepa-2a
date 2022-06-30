@@ -1,29 +1,21 @@
+import paho.mqtt.client as mqtt
 import json
-import threading
-#import paho.mqtt.client as MQTT
-import requests
 
-#session = MQTT.Client(client_id="vini-serial")
-#def on_log( client, userdata, level, buf ):
-#    print( "log: ", buf)
+def on_message(client, userdata, message):
+    try:
+        json.loads(message.decode('utf-8'));
+        with open("values.json", "w") as file:
+            file.write(message.payload.decode('utf-8'));
+    except ValueError as error:
+        pass;
+    
+def on_connect(client, userdata, flags, rc):
+    client.subscribe(topic="values");
+    
+mqtt_client = mqtt.Client(client_id="server");
+mqtt_client.on_message = on_message;
+mqtt_client.on_connect = on_connect;
+mqtt_client.username_pw_set("team3", "d*j-K5:BJK9;");
+mqtt_client.connect(host="172.17.0.4", port=1883, keepalive=60);
 
-#def on_connect( client, userdata, flags, rc ):
-#    print( "Connexion: code retour = %d" % rc )
-#    print( "Connexion: Statut = %s" % ("OK" if rc==0 else "Echec connection") )
-#    client.subscribe("Message_Serveur")
-
-#def on_message(client, userdata, message):
-#    print(message.payload)
-
-
-#def init(adress, port, refreshRate):
-#    session.connect(host=adress, port=port, keepalive=refreshRate)
-#    session.on_connect = on_connect
-#    session.on_log = on_log
-#    session.on_message = on_message
-
-#init('77.159.224.22', 8883, 50)
-#threading.Thread(target=session.loop_forever).start()
-
-
-print(json.loads(requests.get('http://127.0.0.1:5000/api?state=?').text))
+mqtt_client.loop_forever();
