@@ -7,82 +7,75 @@
     field per item, and a button used to send a POST XMLHttpRequest.
 -->
 {% block content %}
+<h1>Control that 🦾</h1>
 <div id="robot">
     <img src="{{ url_for('static', filename='/img/robot.png') }}" height="100%" alt="Stern - Team 3">
 </div>
-<div id="motors">
+<div id="main-layout">
+    <div id="points">
+        <input type="button" id="launch-sequence" class="hidden" value="Launch points sequence">
+        <div id="registered-points">
+        </div>
+    </div>
     <div id="motors-values-selection">
+        <span>Set the angular positions of the motors</span>
         <div class="motor-section">
-            <label for="motor-1">Motor 1</label>
+            <label for="motor-1">Axis 1</label>
             <input type="button" id="motor-1-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-1" value="0" class="motor-input">
             <input type="button" id="motor-1-right" value="➡️" class="btn-arrow">
         </div>
         <div class="motor-section">
-            <label for="motor-2">Motor 2</label>
+            <label for="motor-2">Axis 2</label>
             <input type="button" id="motor-2-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-2" value="0" class="motor-input">
             <input type="button" id="motor-2-right" value="➡️" class="btn-arrow">
         </div>
         <div class="motor-section">
-            <label for="motor-3">Motor 3</label>
+            <label for="motor-3">Axis 3</label>
 
             <input type="button" id="motor-3-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-3" value="0" class="motor-input">
             <input type="button" id="motor-3-right" value="➡️" class="btn-arrow">
         </div>
         <div class="motor-section">
-            <label for="motor-4">Motor 4</label>
+            <label for="motor-4">Axis 4</label>
             
             <input type="button" id="motor-4-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-4" value="0" class="motor-input">
             <input type="button" id="motor-4-right" value="➡️" class="btn-arrow">
         </div>
         <div class="motor-section">
-            <label for="motor-5">Motor 5</label>
+            <label for="motor-5">Axis 5</label>
 
             <input type="button" id="motor-5-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-5" value="0" class="motor-input">
             <input type="button" id="motor-5-right" value="➡️" class="btn-arrow">
         </div>
         <div class="motor-section">
-            <label for="motor-6">Motor 6</label>
+            <label for="motor-6">Axis 6</label>
         
             <input type="button" id="motor-6-left" value="⬅️" class="btn-arrow">
             <input type="number" id="motor-6" value="0" class="motor-input">
             <input type="button" id="motor-6-right" value="➡️" class="btn-arrow">
         </div>
-        <input type="button" value="Register point" id="register-point" title="Limit : 10">
+            <input type="button" value="Register point" id="register-point" title="Limit : 10">
     </div>
-    <div id="motor-current-values">
-        <input readonly type="text" id="motor-1-current-value" value="Undefined">
-        <input readonly type="text" id="motor-2-current-value" value="Undefined">
-        <input readonly type="text" id="motor-3-current-value" value="Undefined">
-        <input readonly type="text" id="motor-4-current-value" value="Undefined">
-        <input readonly type="text" id="motor-5-current-value" value="Undefined">
-        <input readonly type="text" id="motor-6-current-value" value="Undefined">
+        <div id="motor-current-values">
+            <span>Current motors angular positions on the robot</span>
+            <label for="motor-1-current-value">Axis 1</label>
+            <input readonly type="text" id="motor-1-current-value" value="Undefined">
+            <label for="motor-2-current-value">Axis 2</label>
+            <input readonly type="text" id="motor-2-current-value" value="Undefined">
+            <label for="motor-3-current-value">Axis 3</label>
+            <input readonly type="text" id="motor-3-current-value" value="Undefined">
+            <label for="motor-4-current-value">Axis 4</label>
+            <input readonly type="text" id="motor-4-current-value" value="Undefined">
+            <label for="motor-5-current-value">Axis 5</label>
+            <input readonly type="text" id="motor-5-current-value" value="Undefined">
+            <label for="motor-6-current-value">Axis 6</label>
+            <input readonly type="text" id="motor-6-current-value" value="Undefined">
+        </div>
     </div>
 </div>
-<div id="points">
-    <input type="button" id="launch-sequence" class="hidden" value="Launch points sequence">
-    <div id="registered-points">
-    </div>
-</div>
-<div id="arc-circle">
-    <div id="arc-point-1">
-        <input type="number" id="arc-circle-point-1-x" placeholder="X value point 1">
-        <input type="number" id="arc-circle-point-1-y" placeholder="Y value point 1">
-        <input type="number" id="arc-circle-point-1-z" placeholder="Z value point 1">
-    </div>
-    <div id="arc-point-2">
-        <input type="number" id="arc-circle-point-2-x" placeholder="X value point 2">
-        <input type="number" id="arc-circle-point-2-y" placeholder="Y value point 2">
-        <input type="number" id="arc-circle-point-2-z" placeholder="Z value point 2">
-    </div>
-    <div id="arc-point-3">
-        <input type="number" id="arc-circle-point-3-x" placeholder="X value point 3">
-        <input type="number" id="arc-circle-point-3-y" placeholder="Y value point 3">
-        <input type="number" id="arc-circle-point-3-z" placeholder="Z value point 3">
-    </div>
-    <input type="button" value="Send values" id="submit-arc-circle">
-</div>
+{% endblock %}

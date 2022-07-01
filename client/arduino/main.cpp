@@ -60,7 +60,7 @@ void loop() {
           motors[i].write(json["motors"][i].as<int>()); 
         }
       }
-      // Run the positions sequence.
+      // Run the registered positions sequence on the client.
       else if(json.containsKey("points-sequence"))
       {
         for(size_t i = 0; i < json["points-sequence"].size(); i++)
@@ -72,14 +72,6 @@ void loop() {
           delay(1500);
         }
       }
-      /*
-      else if(json.containsKey("arc-circle"))
-      {
-        Serial.write("Not Handling arc-circle at this moment.");
-      }
-    }
-  }
-  */
   // If 2 seconds have passed since the Chrono variable initialization, let's reset the serial buffer, send the motors 
   // values to the serial port and finally restart the Chrono variable.
   }

@@ -8,10 +8,8 @@ import threading
 # Serial Init --------------------------------
 serialPorts = serial_enum.main()
 portHandle = int(input("What port do you want to use ? (1 for first, 2 for second...)")) - 1;
-baudRate = int(input("What is the baudrate of the device ? "));
-"""
-serialHandle = serial.Serial(port=serialPorts[portHandle], baudrate=baudRate, timeout=1);
-"""
+baudRate = int(input("What is the baudrate of the device ?"));
+
 def writeToSerialPort(message):
     with serial.Serial(port=serialPorts[portHandle], baudrate=baudRate, timeout=1) as serialHandle:
         serialHandle.write(bytes(message, 'ascii'));

@@ -1,3 +1,4 @@
+// Setting up the tool used to do POST or GET requests without reloading the page.
 var api = {
     url : "https://stern3.imerir.org/api",
     xhr : null,
@@ -7,6 +8,7 @@ var api = {
         xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
         xhr.send(JSON.stringify(content));
      },
+    // Asks for the current angles values from the robot.
     get : function () { 
         xhr = new XMLHttpRequest();
         xhr.open("GET", "https://stern3.imerir.org/api", true);
@@ -28,13 +30,13 @@ var api = {
          }
      }
 
+// To keep an eye on how many points are registered.
 let registeredPointsCount = 0;
 
 /**
- * 
- * @param {Array<Number>} p_motors 
+ * Retrieves motors angles data from the inputs.
+ * @returns {Array<Number>} motors
  */
-
 function getMotorValues()
 {
     var motors = [];
@@ -44,14 +46,17 @@ function getMotorValues()
         }
     return motors;
 }
+
 /**
- * @param {Array<Number>} p_motors
+ * Retrieves motors angles data from the inputs or from a specific registered position.
+ * @param {Array<Number>|null} p_motors
  */
 function postMotorsData(p_motors = null)
 {
     p_motors ? api.post({"motors": p_motors}) : api.post({"motors": getMotorValues()});
 }
 
+// Following block sets up functions which will send motors angles data to the server, whether the client clicks on an arrow or press enter.
 let arrowButtons = $('.btn-arrow');
 for (let index = 1; index < arrowButtons.length/2 + 1 ; index++) {
     $(`#motor-${index}-left`).on('click', function(){
@@ -71,6 +76,7 @@ for (let index = 1; index < arrowButtons.length/2 + 1 ; index++) {
     })
 };
 
+// Following block is used to register/delete positions of the robot.
 $('#register-point').on('click', function() {
     if(registeredPointsCount < 10)
     {
@@ -104,6 +110,7 @@ $('#register-point').on('click', function() {
     }
 });
 
+// Parse all the values from the registered points and send them to the server.
 $('#launch-sequence').on('click', function(){
     points = [];
     for (let index = 1; index < registeredPointsCount+1; index++) {
@@ -113,10 +120,7 @@ $('#launch-sequence').on('click', function(){
     api.post({"points-sequence": points})
 });
 
-/* Submit button on the motors section will send a POST XMLHttpRequest,
-that will retrieve the values from all the motors input fields.
-*/
-
+// Submit button on the motors section will send a POST XMLHttpRequest,that will retrieve the values from all the motors input fields.
  $('#submit-single-point').on('click', function () { 
     let singlePoint = {};
     singlePoint["x"] = parseInt($('#single-point-x').val());
@@ -125,24 +129,7 @@ that will retrieve the values from all the motors input fields.
     api.post({"singlePoint": singlePoint});
     });
 
-$('#submit-arc-circle').on('click', function () { 
-    let points = []
-    for (let index = 1; index < 3 + 1; index++) {
-        let point = {};
-        point["x"] = parseFloat($(`#arc-circle-point-${index}-x`).val());
-        point["y"] = parseFloat($(`#arc-circle-point-${index}-y`).val());
-        point["z"] = parseFloat($(`#arc-circle-point-${index}-z`).val());
-        points.push(point);
-    }
-    api.post({"arc-circle": points});
-    console.log(points);
- });
-
-
+// Every second, retrieve data from the server to actualize data without reloading the page.
 setInterval(function () { 
     api.get();
   }, 1000);
-
-/* Every second, retrieve data from the server to actualize data without reloading
-  the page.
-*/

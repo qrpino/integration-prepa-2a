@@ -12,7 +12,7 @@ CORS(app, resources={r"/*": {"origins":"*"}});
 def index():
     return render_template('index.html')
 
-# Route created to handle XMLHttpRequests by the client.
+# Route created to handle XMLHttpRequests sent by the client.
 @app.route('/api', methods = ['POST', 'GET'])
 def api():
     if(request.method == 'GET'):

@@ -1,5 +1,10 @@
 *{
-    
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
 }
 
 .btn-arrow{
@@ -16,22 +21,52 @@ input[type="number"]{
     text-align: center;
 }
 
+label{
+    text-decoration: dashed;
+}
+
 #robot{
     height: 40vh;
     text-align: center;
 }
 
-#motors {
-    margin-left: 40%;
-    margin-right: 40%;
+#main-layout{
+    display: flex;
+    justify-content: space-evenly;
 }
 
+#motor-values-selection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+span {
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+}
 .motor-section {
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: space-evenly;
+}
+#motor-current-values{
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#motor-current-values > input{
+    margin: auto;
+    text-align: center;
+    display: inline;
+    width: 20%;
 }
 
 .hidden {
     visibility: hidden;
+}
+#main-layout > div {
+    width: 25vw;
 }
