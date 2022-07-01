@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo apt-get install python3
 python3 -m pip install paho-mqtt
 python3 -m pip install flask

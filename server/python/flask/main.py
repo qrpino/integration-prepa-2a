@@ -3,6 +3,8 @@ from flask import Flask, make_response, render_template, request
 from flask_cors import CORS, cross_origin
 import paho.mqtt.publish as publish
 import os.path
+# Set to true if your server runs on production.
+PRODUCTION = False;
 # Let's create the Flask instance.
 app = Flask(__name__);
 # Let's define the CORS policy for http requests.
@@ -46,4 +48,7 @@ def api():
 
 if __name__ == '__main__':
     # Allow all adresses to access the HTTP server on the port 80, on debug mode.
-        app.run(host="0.0.0.0", port=80, debug=True)
+    if(PRODUCTION):
+        app.run(host="0.0.0.0", port=80, debug=False)
+    else:
+        app.run(host="127.0.0.1", port=5000, debug=True)

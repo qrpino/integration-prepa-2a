@@ -33,6 +33,8 @@ var api = {
 // To keep an eye on how many points are registered.
 let registeredPointsCount = 0;
 
+const maxPointsCount = 8;
+
 /**
  * Retrieves motors angles data from the inputs.
  * @returns {Array<Number>} motors
@@ -78,7 +80,7 @@ for (let index = 1; index < arrowButtons.length/2 + 1 ; index++) {
 
 // Following block is used to register/delete positions of the robot.
 $('#register-point').on('click', function() {
-    if(registeredPointsCount < 10)
+    if(registeredPointsCount < maxPointsCount)
     {
         if(registeredPointsCount === 0)
         {
@@ -119,15 +121,6 @@ $('#launch-sequence').on('click', function(){
     }
     api.post({"points-sequence": points})
 });
-
-// Submit button on the motors section will send a POST XMLHttpRequest,that will retrieve the values from all the motors input fields.
- $('#submit-single-point').on('click', function () { 
-    let singlePoint = {};
-    singlePoint["x"] = parseInt($('#single-point-x').val());
-    singlePoint["y"] = parseInt($('#single-point-y').val());
-    singlePoint["z"] = parseInt($('#single-point-z').val());
-    api.post({"singlePoint": singlePoint});
-    });
 
 // Every second, retrieve data from the server to actualize data without reloading the page.
 setInterval(function () { 

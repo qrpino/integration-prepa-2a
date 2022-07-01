@@ -3,8 +3,9 @@
 sudo yum upgrade -y
 sudo yum install epel-release
 sudo yum install fail2ban
+sudo systemctl enable sshd
+sudo systemctl start sshd
 sudo systemctl enable fail2ban
-sudo systemctl restart fail2ban
 sudo cat > /etc/fail2ban/jail.d/custom.conf << EOF
 [DEFAULT]
 ignoreip = 127.0.0.1
@@ -17,6 +18,7 @@ logpath = /var/log/auth.log
 maxretry = 3
 bantime = 10m
 EOF
+sudo systemctl restart fail2ban
 sudo yum install -y net-tools
 sudo yum install -y firewalld
 sudo systemctl enable firewalld

@@ -1,25 +1,27 @@
 /* Stern ADAI 2A Final Project, © Team3 - All rights reserved. */
 /* Intended to be used on an Arduino UNO board. */
 #include <Arduino.h>
+
 // To get this code compiling correctly, you will need to download the following libraries :
 // - ArduinoJson
 // - Chrono
 // - Servo
 // These libraries are available at PlatformIo's Libraries section.
-#include <ArduinoJson.hpp>
-#include <Chrono.h>
-#include <Servo.h>
+#include "../.pio/libdeps/uno/ArduinoJson/ArduinoJson.h"
+// #include <ArduinoJson.hpp>
+#include "../.pio/libdeps/uno/Chrono/Chrono.h"
+//#include <Chrono.h>
+#include "../.pio/libdeps/uno/Servo/src/Servo.h"
+//#include <Servo.h>
 
 #define NB_MOTORS 6
 
 // Declare an ArdunoJson object which can store up to 512 bytes of data.
-// A dire pendant l'oral : Je dois allouer beaucoup d'espace pour la suite de points
-// Avec 512 octets alloués en ArduinoJson, ma limite de points est de 8.
-// Elle était de 3 à 256 octets, l'Arduino n'a que 2048 octets.
+// Remember that the Arduino that we're using has only 2048 bytes of RAM, you have to find the right balance.
 ArduinoJson::StaticJsonDocument<512> json;
 // Declare Chrono instance which will be used to get a time based timer, to send regularly the motors values.
 Chrono dt;
-// Declare array of Servo pointers, and initialize their instance.
+// Declare array of Servo, and initialize their instance.
 Servo motors[6] = {Servo()};
 // Declare a pointer to a Servo object, which will be further.
 Servo* currentMotor = nullptr;
@@ -52,7 +54,6 @@ void loop() {
       // to the received message.
       if(json.containsKey("motors"))
       { 
-        //motors[0].write(json["motor"][0].as<int>());
         for (size_t i = 0; i < NB_MOTORS; i++)
         {
           // Since C++ is a strongly typed language, and ArduinoJson is dynamically typed, we need to cast the values
@@ -77,6 +78,7 @@ void loop() {
   }
   else if(dt.hasPassed(2000))
   {
+    // Let's create the message that we want to send to the serial port.
     String values = "{'motors':[";
     for (size_t i = 0; i < NB_MOTORS; i++)
     {
@@ -86,10 +88,4 @@ void loop() {
     Serial.write(values.c_str());
     dt.restart();
   }
-  /*
-  else
-  {
-    json.clear();
-  }
-  */
 }}
