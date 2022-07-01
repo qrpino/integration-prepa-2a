@@ -2,4 +2,4 @@
 
 ## Setup
 
-Just run "/server-setup.sh" to setup all you need on the server, and "client-python-setup.sh" to setup the client side.
+Just run "scripts-setup/server-setup.sh" to setup all you need on the server, and "scripts-setup/client-python-setup.sh" to setup the client side.
