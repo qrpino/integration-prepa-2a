@@ -3,3 +3,5 @@ client/python/__pycache__
 server/python/flask/__pycache__
 server/python/flask/.venv
 server/python/flask/*.sh
+.vscode
+ssh
